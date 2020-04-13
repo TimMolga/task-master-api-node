@@ -1,5 +1,6 @@
 const express = require('express');
-const jobs = require('./routes/job');
+const jobs = require('./routes/jobs');
+const tasks = require('./routes/tasks');
 var cors = require('cors');
 const app = express();
 
@@ -11,6 +12,7 @@ mongoose.connect('mongodb://localhost/taskmaster')
 app.use(cors());
 app.use(express.json());
 app.use('/api/jobs', jobs);
+app.use('/api/tasks', tasks);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`listening on port ${port}...`));

@@ -1,5 +1,5 @@
+const { taskSchema } = require('./task');
 const mongoose = require('mongoose');
-const Joi = require('joi');
 
 const Job = mongoose.model(
   'Job',
@@ -15,20 +15,9 @@ const Job = mongoose.model(
       type: String
     },
     tasks: {
-      type: Array
+      type: [taskSchema]
     }
   })
 );
 
-function validateJob(job) {
-  const schema = {
-    title: Joi.string()
-      .min(1)
-      .max(255)
-      .required()
-  };
-  return Joi.validate(job, schema);
-}
-
 exports.Job = Job;
-exports.validateJob = validateJob;
